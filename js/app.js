@@ -2,6 +2,29 @@
  * Create a list that holds all of your cards
  */
 
+let cardSymbol = [
+  "fa fa-diamond",
+  "fa fa-paper-plane-o",
+  "fa fa-anchor",
+  "fa fa-bolt",
+  "fa fa-cube",
+  "fa fa-anchor",
+  "fa fa-leaf",
+  "fa fa-bicycle",
+  "fa fa-diamond",
+  "fa fa-bomb",
+  "fa fa-leaf",
+  "fa fa-bomb",
+  "fa fa-bolt",
+  "fa fa-bicycle",
+  "fa fa-paper-plane-o",
+  "fa fa-cube"
+],
+openCards = [],
+matchedCards = [];
+
+
+let moves = 0;
 
 /*
  * Display the cards on the page
@@ -9,6 +32,7 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -36,3 +60,32 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+//add event listner all cards (click)
+ $('.deck').find('.card').on('click', function(){
+     if ($(this).hasClass('open show')) { 
+       return; 
+     }   
+     $(this).toggleClass('open show');
+      openCards.push($(this));
+      
+      if(openCards.length === 2){
+        //check the match
+        if(openCards[0] === openCards[1]){
+          //fixed position
+          $('.card').addClass('match');
+          $('.card').removeClass('open show');
+          
+          moves++;
+          
+        } else if(openCards[0] !== openCards[1]){
+          //flip again normal card
+          $('.card').removeClass('open show');
+        }
+        
+      }
+      
+ });
+ 
+
+ 
