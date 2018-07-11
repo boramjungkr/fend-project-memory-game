@@ -20,11 +20,10 @@ let cardSymbol = [
   "fa fa-paper-plane-o",
   "fa fa-cube"
 ],
-openCards = [],
-matchedCards = [];
+matched = [];
 
 
-let moves = 0;
+let counter = 0;
 
 /*
  * Display the cards on the page
@@ -47,7 +46,7 @@ function shuffle(array) {
     }
 
     return array;
-}
+};
 
 
 /*
@@ -69,23 +68,31 @@ function shuffle(array) {
      $(this).toggleClass('open show');
       openCards.push($(this));
       
-      if(openCards.length === 2){
-        //check the match
-        if(openCards[0] === openCards[1]){
-          //fixed position
-          $('.card').addClass('match');
-          $('.card').removeClass('open show');
-          
-          moves++;
-          
-        } else if(openCards[0] !== openCards[1]){
-          //flip again normal card
-          $('.card').removeClass('open show');
-        }
-        
-      }
+      //check if cards match
+       if(openCards.length === 2) {
+         let openCards = [];
+         
+         //matched
+         if(openCards[0] === openCards[1]){
+           $(this).find('.card').addClass('match');
+           $(this).find('.card').removeClass('open show');
+           counter++;
+         }
+         //hide the cards symbol
+         else if(openCards[0] !== openCards[1]){
+           $(this).find('.card').removeClass('open show');
+           
+         }
+         
+       }  
+      
+      
       
  });
+
+
  
 
  
+
+
