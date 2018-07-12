@@ -21,7 +21,7 @@ let cardSymbol = [
   "fa fa-cube"
 ],
 matched = [];
-
+openCards = [];
 
 let counter = 0;
 
@@ -62,33 +62,48 @@ function shuffle(array) {
 
 //add event listner all cards (click)
  $('.deck').find('.card').on('click', function(){
-     if ($(this).hasClass('open show')) { 
+     if ($(this).hasClass('open show') || $(this).hasClass('match')) { 
+       console.log('Just return!');
        return; 
      }   
      $(this).toggleClass('open show');
       openCards.push($(this));
       
+      console.log('openCards='+openCards.length);
+      
       //check if cards match
-       if(openCards.length === 2) {
-         let openCards = [];
+       if(openCards.length === 2) { 
+         console.log('This is the second cards! (openCards.length === 2)');
          
-         //matched
-         if(openCards[0] === openCards[1]){
-           $(this).find('.card').addClass('match');
-           $(this).find('.card').removeClass('open show');
-           counter++;
-         }
-         //hide the cards symbol
-         else if(openCards[0] !== openCards[1]){
-           $(this).find('.card').removeClass('open show');
+         
+         for(let i=0; i<openCards.length; i++){
+           
+           
+           }
+          
+          //matched
+           if(openCards[0] === openCards[1]){
+             console.log('Both are matched! (openCards[0] === openCards[1])');
+             
+             $(this).find('.card').addClass('match');
+             $(this).find('.card').removeClass('open show');
+             counter++;
+           }
+           //hide the cards symbol
+           else if(openCards[0] !== openCards[1]){
+             console.log('Both are not matched! (openCards[0] !== openCards[1])');
+             $(this).find('.card').removeClass('open show');
+             
+           }
            
          }
+    
          
        }  
       
       
       
- });
+ );
 
 
  
