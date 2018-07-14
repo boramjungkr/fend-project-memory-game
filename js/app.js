@@ -66,6 +66,8 @@ function shuffle(array) {
        console.log('Just return!');
        return; 
      }   
+    
+    //push openCards array
      $(this).toggleClass('open show');
       openCards.push($(this));
       
@@ -74,26 +76,25 @@ function shuffle(array) {
       //check if cards match
        if(openCards.length === 2) { 
          console.log('This is the second cards! (openCards.length === 2)');
-         
-         
-         for(let i=0; i<openCards.length; i++){
-           
-           
-           }
-          
+        
           //matched
-           if(openCards[0] === openCards[1]){
-             console.log('Both are matched! (openCards[0] === openCards[1])');
-             
+           if(openCards[0][0].firstChild.className === openCards[1][0].firstChild.className){
+             console.log('Both are matched!');
+      
              $(this).find('.card').addClass('match');
+             openCards[0].addClass('match');
+             openCards[1].addClass('match');
              $(this).find('.card').removeClass('open show');
+             openCards[0].removeClass('open show');
+             openCards[1].removeClass('open show');
              counter++;
            }
            //hide the cards symbol
-           else if(openCards[0] !== openCards[1]){
+           else {
              console.log('Both are not matched! (openCards[0] !== openCards[1])');
              $(this).find('.card').removeClass('open show');
-             
+             openCards[0].removeClass('open show');
+             openCards[1].removeClass('open show');
            }
            
          }
@@ -106,7 +107,14 @@ function shuffle(array) {
  );
 
 
+ //resetGame
+ $('#resetButton').click(resetGame);
+
  
+ function resetGame(){
+   console.log('started');
+   
+ }
 
  
 
