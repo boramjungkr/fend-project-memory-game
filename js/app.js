@@ -78,23 +78,21 @@ function shuffle(array) {
          console.log('This is the second cards! (openCards.length === 2)');
         
           //matched
-           if(openCards[0][0].firstChild.className === openCards[1][0].firstChild.className){
-             console.log('Both are matched!');
-      
-             $(this).find('.card').addClass('match');
+           if($(openCards[0]).find('i').attr('class') === $(openCards[1]).find('i').attr('class')){
+             console.log('Both are matched!'+$(openCards[0]).find('i').attr('class'));
              openCards[0].addClass('match');
              openCards[1].addClass('match');
-             $(this).find('.card').removeClass('open show');
-             openCards[0].removeClass('open show');
-             openCards[1].removeClass('open show');
              counter++;
            }
            //hide the cards symbol
-           else {
-             console.log('Both are not matched! (openCards[0] !== openCards[1])');
-             $(this).find('.card').removeClass('open show');
-             openCards[0].removeClass('open show');
-             openCards[1].removeClass('open show');
+           else if($(openCards[0]).find('i').attr('class') !== $(openCards[1]).find('i').attr('class')){
+             setTimeout(function(){
+             console.log('Both are not matched!');
+             openCards[0].toggleClass('open show');
+             openCards[1].toggleClass('open show');
+             removeOpenCards();
+           }, 1000);
+           
            }
            
          }
@@ -115,7 +113,7 @@ function shuffle(array) {
    console.log('started');
    
  }
-
  
-
-
+ function removeOpenCards() {
+     openCards = [];
+ }
