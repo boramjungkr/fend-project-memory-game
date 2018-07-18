@@ -23,7 +23,7 @@ let cardSymbol = [
 matched = [];
 openCards = [];
 
-let counter = 0;
+let moves = 0;
 
 /*
  * Display the cards on the page
@@ -82,6 +82,7 @@ function shuffle(array) {
              console.log('Both are matched!'+$(openCards[0]).find('i').attr('class'));
              openCards[0].addClass('match');
              openCards[1].addClass('match');
+             removeOpenCards();
              counter++;
            }
            //hide the cards symbol
@@ -92,16 +93,11 @@ function shuffle(array) {
              openCards[1].toggleClass('open show');
              removeOpenCards();
            }, 1000);
-           
+            incrementMove();
            }
            
          }
-    
-         
        }  
-      
-      
-      
  );
 
 
@@ -117,3 +113,9 @@ function shuffle(array) {
  function removeOpenCards() {
      openCards = [];
  }
+
+//increment move count
+function incrementMove(){
+  moves += 1;
+  $('.moves').html(moves);
+}
